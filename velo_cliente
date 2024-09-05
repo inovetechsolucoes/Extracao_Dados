@@ -1,0 +1,39 @@
+select
+	cliente.id as "Código",
+	if(cliente.razao_social = "",
+	cliente.nome,
+	cliente.razao_social) as "Nome/Razão Social",
+	'' as "Apelido/Fantasia",
+	cliente.cpf_cnpj "CPF/CNPJ",
+	cliente.rg "RG/IM",
+	'' as "CNH/IE",
+	case when cliente.ie_indicador = 9 then 1
+	when cliente.ie_indicador = 2 then 1
+	else 0 end "Isento I.E.",
+	'' as "Simples Nacional",
+	cliente.nascimento_adi "Data Nascimento/Fundação",
+	cliente.telefone "Telefone",
+	cliente.fax "Celular",
+	cliente.email_adi "E-mail",
+	cliente.cep "CEP",
+	cliente.endereco "Logradouro",
+	cliente.numero "Número",
+	cliente.referencia "Complemento",
+	cliente.bairro "Bairro",
+	'' as "Referência",
+	ucase (cidades.nome) "Cidade",
+	estados.uf "Estado",
+	1 as "Cliente",
+	0 as "Fornecedor",
+	'' as "Forn. de produto",
+	'' as "Forn. de serviço",
+	'' as "Forn. Transp.",
+	'' as "Observação",
+	'' as "Data Cadastro",
+	'' as "Hora Cadastro"
+from
+	cliente
+left join cidades on
+	cliente.id_cidade = cidades.id
+left join estados on
+	cliente.id_estado = estados.id
