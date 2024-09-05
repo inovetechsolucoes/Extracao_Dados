@@ -1,3 +1,5 @@
+-- MySQL
+
 select
 	cliente.id as "Código",
 	if(cliente.razao_social = "",
