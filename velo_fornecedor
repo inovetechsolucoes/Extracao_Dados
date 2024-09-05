@@ -1,3 +1,5 @@
+-- MySQL
+
 select
 	f.id "Código",
 	ucase (f.razao_social) "Nome/Razão Social",
